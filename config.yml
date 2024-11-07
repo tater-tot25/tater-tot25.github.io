@@ -11,7 +11,7 @@
 
 # Name of website
 title: My website
-remote_theme: benbalter/retlab
+remote_theme: netlify-templates/auto-annotated-portfolio
 # Your name to show in the footer
 author: Some Person
 
