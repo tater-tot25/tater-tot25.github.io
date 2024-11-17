@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Basic Snake HTML Game</title>
-  <meta charset="UTF-8">
+<div class="game-container">
+    <canvas width="200" height="200" id="game"></canvas>
+  </div>
+  
   <style>
     /* Basic styles for embedding */
     .game-container {
@@ -13,115 +12,104 @@
       justify-content: center;
       overflow: hidden;
     }
-
+  
     canvas {
       width: 100%;
       height: 100%;
       border: 1px solid white;
     }
-
-    body {
-      margin: 0;
-    }
   </style>
-</head>
-<body>
-<div class="game-container">
-  <canvas width="200" height="200" id="game"></canvas>
-</div>
-
-<script>
-var canvas = document.getElementById('game');
-var context = canvas.getContext('2d');
-
-// Grid size for smaller window
-var grid = 10;
-var count = 0;
-
-var snake = {
-  x: 100,
-  y: 100,
-  dx: grid,
-  dy: 0,
-  cells: [],
-  maxCells: 4
-};
-var apple = {
-  x: 150,
-  y: 150
-};
-
-// Function for random apple position
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
-function loop() {
-  requestAnimationFrame(loop);
-
-  if (++count < 6) return;
-
-  count = 0;
-  context.clearRect(0, 0, canvas.width, canvas.height);
-
-  snake.x += snake.dx;
-  snake.y += snake.dy;
-
-  if (snake.x < 0) snake.x = canvas.width - grid;
-  else if (snake.x >= canvas.width) snake.x = 0;
-
-  if (snake.y < 0) snake.y = canvas.height - grid;
-  else if (snake.y >= canvas.height) snake.y = 0;
-
-  snake.cells.unshift({x: snake.x, y: snake.y});
-  if (snake.cells.length > snake.maxCells) snake.cells.pop();
-
-  context.fillStyle = 'red';
-  context.fillRect(apple.x, apple.y, grid - 1, grid - 1);
-
-  context.fillStyle = 'green';
-  snake.cells.forEach(function(cell, index) {
-    context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
-
-    if (cell.x === apple.x && cell.y === apple.y) {
-      snake.maxCells++;
-      apple.x = getRandomInt(0, canvas.width / grid) * grid;
-      apple.y = getRandomInt(0, canvas.height / grid) * grid;
+  
+  <script>
+    var canvas = document.getElementById('game');
+    var context = canvas.getContext('2d');
+  
+    // Grid size for smaller window
+    var grid = 10;
+    var count = 0;
+  
+    var snake = {
+      x: 100,
+      y: 100,
+      dx: grid,
+      dy: 0,
+      cells: [],
+      maxCells: 4
+    };
+    var apple = {
+      x: 150,
+      y: 150
+    };
+  
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
     }
-
-    for (var i = index + 1; i < snake.cells.length; i++) {
-      if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
-        snake.x = 100;
-        snake.y = 100;
-        snake.cells = [];
-        snake.maxCells = 4;
+  
+    function loop() {
+      requestAnimationFrame(loop);
+  
+      if (++count < 6) return;
+  
+      count = 0;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+  
+      snake.x += snake.dx;
+      snake.y += snake.dy;
+  
+      if (snake.x < 0) snake.x = canvas.width - grid;
+      else if (snake.x >= canvas.width) snake.x = 0;
+  
+      if (snake.y < 0) snake.y = canvas.height - grid;
+      else if (snake.y >= canvas.height) snake.y = 0;
+  
+      snake.cells.unshift({ x: snake.x, y: snake.y });
+      if (snake.cells.length > snake.maxCells) snake.cells.pop();
+  
+      context.fillStyle = 'red';
+      context.fillRect(apple.x, apple.y, grid - 1, grid - 1);
+  
+      context.fillStyle = 'green';
+      snake.cells.forEach(function(cell, index) {
+        context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
+  
+        if (cell.x === apple.x && cell.y === apple.y) {
+          snake.maxCells++;
+          apple.x = getRandomInt(0, canvas.width / grid) * grid;
+          apple.y = getRandomInt(0, canvas.height / grid) * grid;
+        }
+  
+        for (var i = index + 1; i < snake.cells.length; i++) {
+          if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
+            snake.x = 100;
+            snake.y = 100;
+            snake.cells = [];
+            snake.maxCells = 4;
+            snake.dx = grid;
+            snake.dy = 0;
+  
+            apple.x = getRandomInt(0, canvas.width / grid) * grid;
+            apple.y = getRandomInt(0, canvas.height / grid) * grid;
+          }
+        }
+      });
+    }
+  
+    document.addEventListener('keydown', function(e) {
+      if (e.which === 37 && snake.dx === 0) {
+        snake.dx = -grid;
+        snake.dy = 0;
+      } else if (e.which === 38 && snake.dy === 0) {
+        snake.dy = -grid;
+        snake.dx = 0;
+      } else if (e.which === 39 && snake.dx === 0) {
         snake.dx = grid;
         snake.dy = 0;
-
-        apple.x = getRandomInt(0, canvas.width / grid) * grid;
-        apple.y = getRandomInt(0, canvas.height / grid) * grid;
+      } else if (e.which === 40 && snake.dy === 0) {
+        snake.dy = grid;
+        snake.dx = 0;
       }
-    }
-  });
-}
-
-document.addEventListener('keydown', function(e) {
-  if (e.which === 37 && snake.dx === 0) {
-    snake.dx = -grid;
-    snake.dy = 0;
-  } else if (e.which === 38 && snake.dy === 0) {
-    snake.dy = -grid;
-    snake.dx = 0;
-  } else if (e.which === 39 && snake.dx === 0) {
-    snake.dx = grid;
-    snake.dy = 0;
-  } else if (e.which === 40 && snake.dy === 0) {
-    snake.dy = grid;
-    snake.dx = 0;
-  }
-});
-
-requestAnimationFrame(loop);
-</script>
-</body>
-</html>
+    });
+  
+    requestAnimationFrame(loop);
+  </script>
+  
