@@ -1,4 +1,7 @@
 
+<h1>Andrew Tate's Github Page</h1>
+Hi, I'm a senior CS major from Whitman College and this is a Github pages pages
+for my Data Science Class!
 
 <h2>Ideas for Data Science Project</h2>
 1. Drinking and Driving:
@@ -30,3 +33,7 @@
 This is a figure from the assigment where I tried to figure out where Schueller prefers
 to go out to drink.
 {% include figure.html %}
+
+<h2>Above and Beyond</h2>
+For my above and beyond I have embeded snake
+{% include snake.html %}
