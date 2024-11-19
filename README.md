@@ -10,6 +10,7 @@ for my Data Science Class!
     * How many kids die in drunk driving related accidents
     * Other fun statistics
     [Link](https://www.kaggle.com/datasets/bryanmaloney/dui-arrests-and-population-by-state-2015-usa)
+    [Link](https://www.kaggle.com/datasets/linzey/alcohol-consumption-us)
 2. Surfing:
     * What board do high performance surfers 
     * What is the ideal wave type
