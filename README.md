@@ -4,7 +4,7 @@ Hi, I'm a senior CS major from Whitman College and this is a Github pages pages
 for my Data Science Class!
 
 <h2>Data Science Final Project</h2>
-[Link](https://tater-tot25.github.io/DataScienceFinalProject/)
+<a href="https://tater-tot25.github.io/DataScienceFinalProject/" target="_blank">Link</a>
 
 <h2>Ideas for Data Science Project</h2>
 1. Drinking and Driving:
