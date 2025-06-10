@@ -47,3 +47,42 @@ These are some games I've developed
 <iframe frameborder="0" src="https://itch.io/embed/2271908?bg_color=3f3f3f&amp;fg_color=cbb6a9&amp;link_color=bf5e38&amp;border_color=6f6c6b" width="552" height="167"><a href="https://andrew-wilson.itch.io/static-sanctuary">Static Sanctuary by Tater-Tot</a></iframe>
 <iframe frameborder="0" src="https://itch.io/embed/2420081?bg_color=dbbec0&amp;fg_color=000000&amp;link_color=e29066&amp;border_color=8cb832" width="552" height="167"><a href="https://andrew-wilson.itch.io/mowed">moWed by Tater-Tot</a></iframe>
 <iframe frameborder="0" src="https://itch.io/embed/2070426?bg_color=743896&amp;fg_color=fce0ff&amp;link_color=76f9fa&amp;border_color=8a3db2" width="552" height="167"><a href="https://andrew-wilson.itch.io/space-exploration-vr">Space Exploration VR (Temporary Title) by Tater-Tot</a></iframe>
+
+<h2>🍻 Our Beer Menu Test</h2>
+<div id="beer-menu" style="display: flex; flex-wrap: wrap; gap: 1em; justify-content: center;"></div>
+
+<script>
+const apiUrl = "https://script.google.com/macros/s/AKfycbz7bLjFjF_doYOu-A6SXU98tJpTB8FnC0Pq1oK8vsUuAAUSbFKUkE7hvevyBNTvIgI/exec";
+
+fetch(apiUrl)
+  .then(res => res.json())
+  .then(beers => {
+    const container = document.getElementById("beer-menu");
+
+    beers.forEach(beer => {
+      const card = document.createElement("div");
+      card.style = `
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        padding: 1em;
+        max-width: 300px;
+        flex: 1 1 200px;
+        font-family: sans-serif;
+      `;
+
+      card.innerHTML = `
+        <div style="font-weight: bold; font-size: 1.2em;">${beer.Name}</div>
+        <div><strong>Type:</strong> ${beer.Type}</div>
+        <div><strong>ABV:</strong> ${beer.ABV}</div>
+        <div><strong>Brewery:</strong> ${beer.Brewery}</div>
+      `;
+
+      container.appendChild(card);
+    });
+  })
+  .catch(error => {
+    document.getElementById("beer-menu").textContent = "Failed to load beer menu.";
+    console.error("Error:", error);
+  });
+</script>
