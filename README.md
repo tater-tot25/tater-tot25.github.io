@@ -57,7 +57,7 @@ const apiUrl = "https://script.google.com/macros/s/AKfycbz7bLjFjF_doYOu-A6SXU98t
 fetch(apiUrl)
   .then(res => res.json())
   .then(beers => {
-    const container = document.getElementById("beer-menu");
+    const container = document.getElementById("beer-menu")
 
     beers.forEach(beer => {
       const card = document.createElement("div");
@@ -74,7 +74,7 @@ fetch(apiUrl)
       card.innerHTML = `
         <div style="font-weight: bold; font-size: 1.2em;">${beer.Name}</div>
         <div><strong>Type:</strong> ${beer.Type}</div>
-        <div><strong>ABV:</strong> ${beer.ABV}</div>
+        <div><strong>ABV:</strong> ${beer.ABV * 100}</div>
         <div><strong>Brewery:</strong> ${beer.Brewery}</div>
         <div><strong>Location:</strong> ${beer.Location}</div>
       `;
