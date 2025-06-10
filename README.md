@@ -76,6 +76,7 @@ fetch(apiUrl)
         <div><strong>Type:</strong> ${beer.Type}</div>
         <div><strong>ABV:</strong> ${beer.ABV}</div>
         <div><strong>Brewery:</strong> ${beer.Brewery}</div>
+        <div><strong>Location:</strong> ${beer.Location}</div>
       `;
 
       container.appendChild(card);
