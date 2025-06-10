@@ -74,7 +74,7 @@ fetch(apiUrl)
       card.innerHTML = `
         <div style="font-weight: bold; font-size: 1.2em;">${beer.Name}</div>
         <div><strong>Type:</strong> ${beer.Type}</div>
-        <div><strong>ABV:</strong> ${beer.ABV}<strong>%</strong></div>
+        <div><strong>ABV:</strong> ${beer.ABV}</div>
         <div><strong>Brewery:</strong> ${beer.Brewery}</div>
       `;
 
